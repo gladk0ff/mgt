@@ -10,7 +10,10 @@ import { ProtectedLayout } from "pages/layouts/ProtectedLayout";
 import { LoginPage } from "pages/LoginPage";
 import { CountPage } from "pages/CountPage";
 import { setApiAuthorizationHeader } from "servicies/client";
-import { tokenService } from "servicies/token";
+import { tokenService } from "servicies/tokenService";
+import { MainLayout } from "pages/layouts/main/MainLayout";
+import { NotFoundPage } from "pages/NotFoundPage";
+import { HomePage } from "pages/HomePage";
 
 import "./App.css";
 
@@ -36,7 +39,12 @@ function App() {
 					<Route path={ROUTES.login} element={<LoginPage />} />
 				</Route>
 				<Route element={<ProtectedLayout />}>
-					<Route path={ROUTES.base} element={<CountPage />} />
+					<Route element={<MainLayout />}>
+						<Route path={ROUTES.base} element={<HomePage />} />
+						<Route path={ROUTES.counter} element={<CountPage />} />
+						{/* Маршрут для обработки неизвестных URL */}
+						<Route path="*" element={<NotFoundPage />} />
+					</Route>
 				</Route>
 			</Routes>
 		</BrowserRouter>

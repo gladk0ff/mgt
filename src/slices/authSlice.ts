@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { tokenService } from "servicies/token";
-import { apiClient } from "servicies/client";
+import { tokenService } from "servicies/tokenService";
 import { IUserToken } from "types/auth";
+import { authService } from "servicies/authService";
 
 interface AuthState {
 	token: IUserToken | null;
@@ -26,18 +26,13 @@ export const loginUser = createAsyncThunk<
 	IUserToken,
 	{ username: string; password: string },
 	{ rejectValue: { message: string } }
->("auth/login", async ({ username, password }, thunkAPI) => {
+>("auth/login", async (data, thunkAPI) => {
 	try {
-		const response = await apiClient.post<IUserToken>("auth/login", {
-			username,
-			password,
-			expiresInMins: 3, //для теста
-		});
-		const token = response.data;
-		return token;
-	} catch (error: { response: { data: { message: string } } }) {
+		const userToken = authService.login(data);
+		return userToken;
+	} catch (error: unknown) {
 		return thunkAPI.rejectWithValue({
-			message: error.response?.data?.message ?? "Что-то пошло не так.",
+			message: error as string,
 		});
 	}
 });
