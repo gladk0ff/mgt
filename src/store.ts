@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { counterReducer } from "./slices/counterSlice";
+import { authReducer } from "./slices/authSlice";
 
 export const store = configureStore({
 	reducer: {
 		counter: counterReducer,
+		auth: authReducer,
 	},
-	devTools: true,
+	devTools: process.env.NODE_ENV === "development",
 });
 
 // вывод типо состояния и Dispatch из самого хранилища
