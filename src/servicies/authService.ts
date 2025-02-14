@@ -7,7 +7,7 @@ export const authService = {
 			const response = await apiClient.post<IUserToken>("auth/login", {
 				username,
 				password,
-				expiresInMins: 3, //для теста
+				expiresInMins: 1, //для теста
 			});
 			const token = response.data;
 			return token;

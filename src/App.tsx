@@ -9,13 +9,13 @@ import { ROUTES } from "constants/routes";
 import { ProtectedLayout } from "pages/layouts/ProtectedLayout";
 import { LoginPage } from "pages/LoginPage";
 import { CountPage } from "pages/CountPage";
-import { setApiAuthorizationHeader } from "servicies/client";
 import { tokenService } from "servicies/tokenService";
 import { MainLayout } from "pages/layouts/main/MainLayout";
 import { NotFoundPage } from "pages/NotFoundPage";
 import { HomePage } from "pages/HomePage";
 
 import "./App.css";
+import { UsersPage } from "pages/UsersPage";
 
 function App() {
 	const { token, isAuthCheking } = useSelector((state: RootState) => state.auth);
@@ -26,9 +26,8 @@ function App() {
 			dispatch(authActions.chekAuth());
 		} else {
 			tokenService.saveToken(token);
-			setApiAuthorizationHeader(token.accessToken);
 		}
-	}, [token]);
+	}, [dispatch, token]);
 
 	if (isAuthCheking) return <Spin fullscreen />;
 
@@ -42,6 +41,7 @@ function App() {
 					<Route element={<MainLayout />}>
 						<Route path={ROUTES.base} element={<HomePage />} />
 						<Route path={ROUTES.counter} element={<CountPage />} />
+						<Route path={ROUTES.users} element={<UsersPage />} />
 						{/* Маршрут для обработки неизвестных URL */}
 						<Route path="*" element={<NotFoundPage />} />
 					</Route>

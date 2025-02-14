@@ -42,3 +42,27 @@
 .read-the-docs {
 	color: #888;
 }
+
+.table-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+	width: 100%;
+}
+
+.ant-table-pagination-right:has(+ .ant-table) {
+	position: absolute;
+	right: 0;
+	top: -64px;
+}
+
+.users-container {
+	padding-top: 64px;
+}
+
+.ant-table-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}

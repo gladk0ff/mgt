@@ -6,7 +6,7 @@ import { IUserToken } from "types/auth";
 export const tokenService = {
 	getToken: () => {
 		const token = sessionStorage.getItem(TOKEN_KEY);
-		if (token) return JSON.parse(token);
+		if (token) return JSON.parse(token) as IUserToken;
 		return null;
 	},
 	saveToken: (token: IUserToken) => {
