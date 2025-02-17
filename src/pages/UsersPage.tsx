@@ -10,20 +10,17 @@ const COLUMNS: TableColumnsType<IUser> = [
 		title: "Имя",
 		width: 200,
 		dataIndex: "firstName",
-		key: "firstName",
 		fixed: "left",
 	},
 	{
 		title: "Age",
 		width: 100,
 		dataIndex: "age",
-		key: "age",
 		fixed: "left",
 	},
 	{
 		title: "Имейл",
 		dataIndex: "email",
-		key: "1",
 		width: 300,
 	},
 ];
@@ -48,6 +45,7 @@ export const UsersPage = () => {
 				columns={COLUMNS}
 				dataSource={users}
 				loading={isLoading}
+				rowKey="id"
 				pagination={{
 					pageSize: pagination?.limit || 10,
 					current: currentPage,
