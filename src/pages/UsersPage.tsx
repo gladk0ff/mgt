@@ -34,10 +34,10 @@ export const UsersPage = () => {
 	}, [dispatch, users]);
 
 	const handlePaginationChange = (current: number, pageSize: number) => {
-		dispatch(getUsers({ skip: current * pageSize, limit: pageSize }));
+		dispatch(getUsers({ skip: (current - 1) * pageSize, limit: pageSize }));
 	};
 
-	const currentPage = pagination?.skip && pagination?.limit ? pagination?.skip / pagination?.limit : 1;
+	const currentPage = pagination?.skip && pagination?.limit ? pagination?.skip / pagination?.limit + 1 : 1;
 
 	return (
 		<Flex className="table-wrapper users-container">
