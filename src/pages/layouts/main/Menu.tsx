@@ -1,13 +1,15 @@
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Button, Flex } from "antd";
 import { ROUTES } from "constants/routes";
 import { NavLink } from "react-router";
+import { useAuth } from "src/AuthContext";
 
 export const Menu = () => {
 	const buttonType = (isActive: boolean) => (isActive ? "primary" : "default");
+	const { logOut } = useAuth();
 
 	return (
-		<Flex>
+		<Flex justify="space-between" align="center">
 			<Flex gap={16}>
 				<NavLink to={ROUTES.base}>
 					{({ isActive }) => <Button icon={<HomeOutlined />} type={buttonType(isActive)}></Button>}
@@ -22,6 +24,7 @@ export const Menu = () => {
 					{({ isActive }) => <Button type={buttonType(isActive)}> Продукты</Button>}
 				</NavLink>
 			</Flex>
+			<Button onClick={logOut} icon={<LogoutOutlined />} type="link" />
 		</Flex>
 	);
 };

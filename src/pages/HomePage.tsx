@@ -6,29 +6,29 @@ export const HomePage = () => {
 			<Typography.Title>Технологии:</Typography.Title>
 			<ol>
 				<li>
-					<a href="https://vitejs.dev/" target="_blank">
-						<Typography.Link>Vite</Typography.Link>
-					</a>
+					<Typography.Link href="https://vitejs.dev/" target="_blank">
+						Vite
+					</Typography.Link>
 				</li>
 				<li>
-					<a href="https://react.dev/" target="_blank">
-						<Typography.Link>React</Typography.Link>
-					</a>
+					<Typography.Link href="https://react.dev/" target="_blank">
+						React
+					</Typography.Link>
 				</li>
 				<li>
-					<a href="https://redux-toolkit.js.org/" target="_blank">
-						<Typography.Link>Redux-toolkit</Typography.Link>
-					</a>
+					<Typography.Link href="https://redux-toolkit.js.org/" target="_blank">
+						Redux-toolkit
+					</Typography.Link>
 				</li>
 				<li>
-					<a href="https://reactrouter.com/" target="_blank">
-						<Typography.Link>React-router</Typography.Link>
-					</a>
+					<Typography.Link href="https://reactrouter.com/" target="_blank">
+						React-router
+					</Typography.Link>
 				</li>
 				<li>
-					<a href="https://ant.design/" target="_blank">
-						<Typography.Link>Ant Design </Typography.Link>
-					</a>
+					<Typography.Link href="https://ant.design/" target="_blank">
+						Ant Design
+					</Typography.Link>
 				</li>
 			</ol>
 		</Flex>

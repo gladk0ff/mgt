@@ -1,8 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button, Alert, FormProps, Flex } from "antd";
-import { loginUser } from "slices/authSlice";
-import { AppDispatch, RootState } from "src/store";
 import { FORM_ERRORS } from "constants/form";
+import { useAuth } from "src/AuthContext";
 
 interface ILoginForm {
 	username: string;
@@ -17,19 +15,18 @@ const AUTH_DATA = [
 ];
 
 export const LoginPage = () => {
-	const dispatch = useDispatch<AppDispatch>();
-	const { login } = useSelector((state: RootState) => state.auth);
+	const { isLoading, login, loginError } = useAuth();
 
 	const onFormSubmit: FormProps<ILoginForm>["onFinish"] = ({ username, password }) => {
 		if (!username || !password) return;
-		dispatch(loginUser({ username, password }));
+		login({ username, password });
 	};
 
 	return (
 		<Flex gap={16} vertical>
 			<Form layout="vertical" onFinish={onFormSubmit}>
 				<h2>Логин</h2>
-				{login.error && <Alert message={login.error} type="error" />}
+				{!!loginError && <Alert message={loginError} type="error" />}
 				<Form.Item name="username" label="Логин" rules={[{ required: true, message: FORM_ERRORS.REQUIRED }]}>
 					<Input size="large" type="text" />
 				</Form.Item>
@@ -37,7 +34,7 @@ export const LoginPage = () => {
 					<Input.Password size="large" type="password" />
 				</Form.Item>
 				<Form.Item style={{ textAlign: "center" }}>
-					<Button type="primary" htmlType="submit" loading={login.isLoading}>
+					<Button type="primary" htmlType="submit" loading={isLoading}>
 						Войти
 					</Button>
 				</Form.Item>

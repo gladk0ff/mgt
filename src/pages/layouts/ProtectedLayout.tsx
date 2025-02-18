@@ -1,12 +1,11 @@
-import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router";
 import { ROUTES } from "constants/routes";
-import { RootState } from "src/store";
+import { useAuth } from "src/AuthContext";
 
 export const ProtectedLayout = () => {
-	const auth = useSelector((state: RootState) => state.auth);
+	const { userToken } = useAuth();
 
-	if (!auth.token) {
+	if (!userToken) {
 		return <Navigate to={ROUTES.login} />;
 	}
 

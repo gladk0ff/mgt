@@ -1,13 +1,12 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
 import { ROUTES } from "constants/routes";
 import { Navigate, Outlet } from "react-router";
 import { Flex } from "antd";
+import { useAuth } from "src/AuthContext";
 
 export const AuthLayout = () => {
-	const auth = useSelector((state: RootState) => state.auth);
+	const { userToken } = useAuth();
 
-	if (auth.token) {
+	if (userToken) {
 		return <Navigate to={ROUTES.base} />;
 	}
 
